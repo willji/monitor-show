@@ -140,4 +140,4 @@ def returnPic(node, alert_level, data):
         return './static/images/' + node + '_warning.jpg'
 
 if __name__ == '__main__':
-    print getNodePic('tais')
+    print(getNodePic('tais'))

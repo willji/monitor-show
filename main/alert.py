@@ -1,8 +1,5 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 from data import *
 
 #告警列表
@@ -206,4 +203,4 @@ def text2html():
     return alert
 
 if __name__ == '__main__':
-    print getAlert()
+    print(getAlert())

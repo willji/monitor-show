@@ -4,13 +4,14 @@ import re
 import datetime
 import sys
 sys.path.append('/usr/lib/python2.6/site-packages/MySQL_python-1.2.5-py2.6.egg')
-import MySQLdb as mysql
+import pymysql as mysql
+mysql.install_as_MySQLdb()
 from log import *
 from mycrypt import prpcrypt
 from binascii import b2a_hex, a2b_hex
 
 #锁定主目录
-DIR = '/opt/oracle/apache/htdocs/panoramic/'
+DIR = '/usr/local/apache/htdocs/monitor-show/'
 
 def getIdIp(node, id):
     '''根据sourceid生成对应IP，返回字符串'''
@@ -390,4 +391,4 @@ if __name__ == '__main__':
     print
     print getSumData('mas', 't')
     '''
-    print getYWData()
+    print(getYWData())

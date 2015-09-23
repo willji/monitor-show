@@ -41,4 +41,4 @@ if __name__ == '__main__':
         passwd = pc.decrypt(f[3].rstrip())
         db = pc.decrypt(f[4].rstrip())
         charset = pc.decrypt(f[5].rstrip())
-        print host, port, user, passwd, db, charset
+        print(host, port, user, passwd, db, charset)

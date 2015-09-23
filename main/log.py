@@ -5,7 +5,7 @@ import re
 import datetime
 
 #锁定主目录
-DIR = '/opt/oracle/apache/htdocs/panoramic/'
+DIR = '/usr/local/apache/htdocs/monitor-show/'
 
 def getNodeIp(node, unit=None):
     '''根据节点及机组生成该节点在TAB机组的IP分布列表，返回IP列表'''
@@ -172,7 +172,7 @@ def getSlaLog(node):
 def getQueueLog(unit):
     '''根据节点名称返回日志列表'''
     log = []
-    with open('/nfs/monitor_cps/tibco/data/' + unit + '-tibco.data') as f:
+    with open(DIR + 'datas/' + unit + '-tibco.data') as f:
         raw_log = f.read()
         raw_log = raw_log.split('\n')[:-1]
     time = raw_log[0].split(' ')[0]
@@ -199,4 +199,4 @@ if __name__ == '__main__':
     print
     print getQueueLog('T')
     '''
-    print getYWLog()
+    print(getYWLog())
