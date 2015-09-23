@@ -1,21 +1,17 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import time
 import os
-import sys
-sys.path.append('/usr/lib/python2.6/site-packages/Werkzeug-0.9-py2.6.egg')
-sys.path.append('/usr/lib/python2.6/site-packages/MarkupSafe-0.9-py2.6.egg')
-sys.path.append('/usr/lib/python2.6/site-packages/Jinja2-2.7-py2.6.egg')
-sys.path.append('/usr/lib/python2.6/site-packages/Flask-0.9-py2.6.egg')
 from flask import Flask, render_template
-from data import *
-from alert import *
-from pic import *
-import mylog
+from data import getNodeData, getBgwData, getQueueData, getSumData
+from pic import getNodePic, getSlaPic, getEntryPic, getBgwPic, getBankPic
+from alert import text2html
+from mylog import mylog
 
 app = Flask(__name__)
 
 def getImage():
+    '''获取各节点图片'''
     images = []
     images.append('./static/images/cp_web_normal.jpg')
     images.append(getEntryPic('cnp_web'))
@@ -57,7 +53,7 @@ def index2():
     try:
         return render_template('index.htm', images=getImage())
     except:
-        mylog.mylog.exception('error')
+        mylog.exception('error')
 
 @app.route('/index2.htm', methods=['GET'])
 def index3():
@@ -343,6 +339,10 @@ def sla_aps():
 @app.route('/sla_mas.html', methods=['GET'])
 def sla_mas():
     return render_template('./cps/sla_mas.html', data=getSlaData('mas'))
+
+@app.route('/dbinfo_nv.html', methods=['GET'])
+def dbinfo_nv():
+    return render_template('dbinfo_nv.html')
 
 @app.route('/time.htm', methods=['GET'])
 def getTime():
