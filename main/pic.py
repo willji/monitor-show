@@ -26,11 +26,11 @@ def getNodePic(node):
             elif data[i]['alert_level'] == 'warning':
                 number_warning += 1
         if number_critical >= 1:
-            return './static/images/' + node + '_critical.jpg'
+            return './static/image/' + node + '_critical.jpg'
         elif number_warning >= 1:
-            return './static/images/' + node + '_warning.jpg'
+            return './static/image/' + node + '_warning.jpg'
         else:
-            return './static/images/' + node + '_normal.jpg'
+            return './static/image/' + node + '_normal.jpg'
     #single
     else:
         for i in range(len(data)):
@@ -43,11 +43,11 @@ def getNodePic(node):
             elif data[i]['alert_level'] == 'warning':
                 number_warning += 1
         if number_critical >= 2:
-            return './static/images/' + node + '_critical.jpg'
+            return './static/image/' + node + '_critical.jpg'
         elif number_critical == 1 or number_warning >= 2:
-            return './static/images/' + node + '_warning.jpg'
+            return './static/image/' + node + '_warning.jpg'
         else:
-            return './static/images/' + node + '_normal.jpg'
+            return './static/image/' + node + '_normal.jpg'
 
 def getBgwPic(node):
     '''根据bgw报警情况返回图片'''
@@ -94,11 +94,11 @@ def getSlaPic(node):
             elif getSlaData(i)[0]['alert_level'] == 'warning':
                 alert_level = 'warning'
         if alert_level == 'normal':
-            return './static/images/arrow_normal.jpg'
+            return './static/image/arrow_normal.jpg'
         elif alert_level == 'warning':
-            return './static/images/arrow_warning.jpg'
+            return './static/image/arrow_warning.jpg'
         else:
-            return './static/images/arrow_critical.jpg' 
+            return './static/image/arrow_critical.jpg' 
     else:
         if getSlaData(node):
             #the number of clour
@@ -111,13 +111,13 @@ def getSlaPic(node):
                     elif data[i]['alert_level'] == 'warning':
                         number_warning += 1
                 if number_critical >= 2:
-                    return './static/images/arrow_' + node + '_critical.jpg'
+                    return './static/image/arrow_' + node + '_critical.jpg'
                 elif number_critical == 1 or number_warning >= 2:
-                    return './static/images/arrow_' + node + '_warning.jpg'
+                    return './static/image/arrow_' + node + '_warning.jpg'
                 else:
-                    return './static/images/arrow_' + node + '_normal.jpg'
+                    return './static/image/arrow_' + node + '_normal.jpg'
         else:
-            return './static/images/arrow_' + node + '_normal.jpg'
+            return './static/image/arrow_' + node + '_normal.jpg'
 
 def getEntryPic(node):
     alert_level = 'normal'
@@ -131,13 +131,13 @@ def returnPic(node, alert_level, data):
     '''综合多个数据返回等级最高的告警图形'''
     for i in data:
         if i['alert_level'] == 'critical':
-            return './static/images/' + node + '_critical.jpg'
+            return './static/image/' + node + '_critical.jpg'
         elif i['alert_level'] == 'warning':
             alert_level = 'warning'
     if alert_level == 'normal':            
-        return './static/images/' + node + '_normal.jpg'
+        return './static/image/' + node + '_normal.jpg'
     elif alert_level == 'warning':
-        return './static/images/' + node + '_warning.jpg'
+        return './static/image/' + node + '_warning.jpg'
 
 if __name__ == '__main__':
     print(getNodePic('tais'))

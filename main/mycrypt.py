@@ -1,6 +1,5 @@
+#!/usr/bin/env python3
 # -*- coding: utf8 -*-
-import sys 
-sys.path.append('/usr/lib/python2.6/site-packages/pycrypto-2.6.1-py2.6.egg')
 from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
  
@@ -22,18 +21,14 @@ class prpcrypt():
         #所以这里统一把加密后的字符串转化为16进制字符串
         return b2a_hex(self.ciphertext)
      
-    #解密后，去掉补足的空格用strip() 去掉
     def decrypt(self, text):
         cryptor = AES.new(self.key, self.mode, self.key)
         plain_text = cryptor.decrypt(a2b_hex(text))
-        return plain_text.rstrip('\0')
+        return plain_text
  
 if __name__ == '__main__':
     pc = prpcrypt('keyskeyskeyskeys')      #初始化密钥
-    with open('../config/db.cfg', 'r') as f:
-        '''
-        f.writelines([host+'\n', port+'\n', user+'\n', passwd+'\n', db+'\n', charset+'\n'])
-        '''
+    with open('../config/db.cfg') as f:
         f = f.readlines()
         host = pc.decrypt(f[0].rstrip())
         port = pc.decrypt(f[1].rstrip())
@@ -41,4 +36,4 @@ if __name__ == '__main__':
         passwd = pc.decrypt(f[3].rstrip())
         db = pc.decrypt(f[4].rstrip())
         charset = pc.decrypt(f[5].rstrip())
-        print(host, port, user, passwd, db, charset)
+        print(host.decode('utf8'), port.decode('utf8'), user.decode('utf8'), passwd.decode('utf8'), db.decode('utf8'), charset.decode('utf8'))

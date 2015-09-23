@@ -12,80 +12,76 @@ app = Flask(__name__)
 
 def getImage():
     '''获取各节点图片'''
-    images = []
-    images.append('./static/images/cp_web_normal.jpg')
-    images.append(getEntryPic('cnp_web'))
-    images.append(getNodePic('pos_machine'))
-    images.append('./static/images/fi_ddp_normal.jpg')
-    images.append('./static/images/app_normal.jpg')
-    images.append('./static/images/arrow_normal.jpg')
-    images.append(getNodePic('vpos'))
-    images.append(getNodePic('mgw'))
-    images.append(getNodePic('posp'))
-    images.append(getNodePic('internal'))
-    images.append(getNodePic('mbp'))
-    images.append('./static/images/arrow_normal.jpg')
-    images.append(getNodePic('tais'))
-    images.append('./static/images/arrow_normal.jpg')
-    images.append(getNodePic('mas'))
-    images.append(getSlaPic('mas'))
-    images.append(getNodePic('aps'))
-    images.append(getSlaPic('aps'))
-    images.append(getBgwPic('cups_cp'))
-    images.append(getBgwPic('cups_cnp'))
-    images.append(getBgwPic('cups_kj'))
-    images.append(getBgwPic('icbc_sh_kj'))
-    images.append(getBgwPic('abc_sz_kj'))
-    images.append(getSlaPic('bgw'))
-    images.append(getBankPic('cups')) 
-    images.append(getBankPic('boc')) 
-    images.append(getBankPic('icbc')) 
-    images.append(getBankPic('abc')) 
-    images.append(getBankPic('ccb')) 
-    return images
+    image = []
+    image.append('./static/image/cp_web_normal.jpg')
+    image.append(getEntryPic('cnp_web'))
+    image.append(getNodePic('pos_machine'))
+    image.append('./static/image/fi_ddp_normal.jpg')
+    image.append('./static/image/app_normal.jpg')
+    image.append('./static/image/arrow_normal.jpg')
+    image.append(getNodePic('vpos'))
+    image.append(getNodePic('mgw'))
+    image.append(getNodePic('posp'))
+    image.append(getNodePic('internal'))
+    image.append(getNodePic('mbp'))
+    image.append('./static/image/arrow_normal.jpg')
+    image.append(getNodePic('tais'))
+    image.append('./static/image/arrow_normal.jpg')
+    image.append(getNodePic('mas'))
+    image.append(getSlaPic('mas'))
+    image.append(getNodePic('aps'))
+    image.append(getSlaPic('aps'))
+    image.append(getBgwPic('cups_cp'))
+    image.append(getBgwPic('cups_cnp'))
+    image.append(getBgwPic('cups_kj'))
+    image.append(getBgwPic('icbc_sh_kj'))
+    image.append(getBgwPic('abc_sz_kj'))
+    image.append(getSlaPic('bgw'))
+    image.append(getBankPic('cups')) 
+    image.append(getBankPic('boc')) 
+    image.append(getBankPic('icbc')) 
+    image.append(getBankPic('abc')) 
+    image.append(getBankPic('ccb')) 
+    return image
 
-@app.route('/index.html', methods=['GET'])
-def index():
-    return render_template('index.html', images=getImage())
-
-@app.route('/index.htm', methods=['GET'])
-def index2():
+@app.route('/panoramic', methods=['GET'])
+def panoramic():
     try:
-        return render_template('index.htm', images=getImage())
+        return render_template('index.htm', image=getImage())
     except:
         mylog.exception('error')
 
-@app.route('/index2.htm', methods=['GET'])
-def index3():
-    return render_template('index2.htm', images=getImage())
+@app.route('/index.html', methods=['GET'])
+def index():
+    return render_template('index.html', image=getImage())
 
 @app.route('/entry.htm', methods=['GET'])
 def entry():
-    return render_template('./entry.htm', images=getImage())
+    return render_template('./entry.htm', image=getImage())
 
 @app.route('/channel.htm', methods=['GET'])
 def channel():
-    return render_template('./channel.htm', images=getImage())
+    return render_template('./channel.htm', image=getImage())
 
 @app.route('/tais.htm', methods=['GET'])
 def tais2():
-    return render_template('./tais.htm', images=getImage())
+    return render_template('./tais.htm', image=getImage())
 
 @app.route('/mas.htm', methods=['GET'])
 def mas2():
-    return render_template('./mas.htm', images=getImage())
+    return render_template('./mas.htm', image=getImage())
 
 @app.route('/aps.htm', methods=['GET'])
 def aps2():
-    return render_template('./aps.htm', images=getImage())
+    return render_template('./aps.htm', image=getImage())
 
 @app.route('/bgw.htm', methods=['GET'])
 def bgw():
-    return render_template('./bgw.htm', images=getImage())
+    return render_template('./bgw.htm', image=getImage())
 
 @app.route('/bank.htm', methods=['GET'])
 def bank():
-    return render_template('./bank.htm', images=getImage())
+    return render_template('./bank.htm', image=getImage())
 
 @app.route('/pos_machine.html', methods=['GET'])
 def pos_machine():
@@ -352,7 +348,7 @@ def getTime():
 def test():
     return os.getcwd()
 
-@app.route('/monitor.html', methods=['GET'])
+@app.route('/monitor', methods=['GET'])
 def monitor():
     return render_template('monitor.html')
 
