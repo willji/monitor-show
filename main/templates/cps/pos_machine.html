@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content1 %}
+<link href="./static/css/node.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block content2 %}
+<table>
+<tr>
+<td bgcolor="#ACD6FF">
+<iframe id="T"  frameborder="0"width="330" height="32" marginheight="0" marginwidth="0" scrolling="no" src="./cps/T.htm"></iframe>
+</td>
+<td bgcolor="#ACD6FF">
+<iframe id="A" frameborder="0" width="330" height="32" marginheight="0" marginwidth="0" scrolling="no" src="./cps/A.htm"></iframe>
+</td>
+<td bgcolor="#ACD6FF">
+<iframe id="B" frameborder="0" width="330" height="32" marginheight="0" marginwidth="0" scrolling="no" src="./cps/B.htm"></iframe>
+</td>
+</tr>
+<tr>
+<td><iframe id="pos_machine_t" frameborder="0" width="320" marginheight="0" marginwidth="0" scrolling="no" src="./cps/pos_machine_t.html"></iframe></td>
+<td><iframe id="pos_machine_a" frameborder="0" width="320" marginheight="0" marginwidth="0" scrolling="no" src="./cps/pos_machine_a.html"></iframe></td>
+<td><iframe id="pos_machine_b" frameborder="0" width="320" marginheight="0" marginwidth="0" scrolling="no" src="./cps/pos_machine_b.html"></iframe></td>
+</tr>
+</table>
+{% endblock %}

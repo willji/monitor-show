@@ -1,0 +1,22 @@
+<link href="../static/css/node.css" rel="stylesheet" type="text/css" />
+<body bgcolor="#FFFFCE">
+<table border="1" bordercolor="black" cellspacing="0px">
+<tr align="middle">
+<td width="45"><font size="2" color="black"><b>T</b></font></td>
+</tr>
+{% if mas %}
+{% for i in mas %}
+<tr align="middle">
+{% if i['alert_level'] == 'critical' %}
+<td bgcolor="#f88888">{{i['ip']}}</td>
+{% elif i['alert_level'] == 'warning' %}
+<td bgcolor="#ffff00">{{i['ip']}}</td>
+{% else %}
+<td bgcolor="#88d066">{{i['ip']}}</td>
+</tr>
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+</table>
+<body>

@@ -1,0 +1,57 @@
+<link href="../static/css/node.css" rel="stylesheet" type="text/css" />
+<body bgcolor="#FFFFCE">
+<table border="1" bordercolor="black" cellspacing="0px">
+<tr align="middle">
+<td width="70"><font size="2" color="black"><b>tais</b></font></td>
+<td width="50"><font color="black"><b>time</b></font></td>
+<td width="50"><font color="black"><b>request</b></font></td>
+<td width="50"><font color="black"><b>response</b></font></td>
+<td width="50"><font color="black"><b>forward</b></font></td>
+</tr>
+{% if tais %}
+{% for i in tais %}
+<tr align="middle">
+<td bgcolor="#acacac">{{i['ip']}}</td>
+<td bgcolor="#acacac">{{i['time']}}</td>
+{% if i['type'] == 'Queue监控' %}
+<td bgcolor="#88d066">{{i['request']}}</td>
+<td bgcolor="#88d066">{{i['response']}}</td>
+<td bgcolor="#88d066">{{i['forward']}}</td>
+{% else %}
+{% if i['alert_level'] == 'critical' %}
+<td bgcolor="#f88888">{{i['request']}}</td>
+<td bgcolor="#f88888">{{i['response']}}</td>
+<td bgcolor="#f88888">{{i['forward']}}</td>
+{% elif i['alert_level'] == 'warning' %}
+<td bgcolor="#ffff00">{{i['request']}}</td>
+<td bgcolor="#ffff00">{{i['response']}}</td>
+<td bgcolor="#ffff00">{{i['forward']}}</td>
+{% else %}
+<td bgcolor="#88d066">{{i['request']}}</td>
+<td bgcolor="#88d066">{{i['response']}}</td>
+<td bgcolor="#88d066">{{i['forward']}}</td>
+</tr>
+{% endif %}
+{% endif %}
+{% endfor %}
+<tr align="middle">
+<td bgcolor="#acacac">Total</td>
+<td bgcolor="#acacac"> -- </td>
+{% if tais[0]['alert_level'] == 'critical' %}
+<td bgcolor="#f88888">{{tais[0]['total_request']}}</td>
+<td bgcolor="#f88888">{{tais[0]['total_response']}}</td>
+<td bgcolor="#f88888">{{tais[0]['total_forward']}}</td>
+{% elif tais[0]['alert_level'] == 'warning' %}
+<td bgcolor="#ffff00">{{tais[0]['total_request']}}</td>
+<td bgcolor="#ffff00">{{tais[0]['total_response']}}</td>
+<td bgcolor="#ffff00">{{tais[0]['total_forward']}}</td>
+{% else %}
+<td bgcolor="#88d066">{{tais[0]['total_request']}}</td>
+<td bgcolor="#88d066">{{tais[0]['total_response']}}</td>
+<td bgcolor="#88d066">{{tais[0]['total_forward']}}</td>
+</tr>
+{% endif %}
+{% else %}
+{% endif %}
+</table>
+</body>

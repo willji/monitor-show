@@ -1,0 +1,43 @@
+<html>
+<head>
+<link href="./static/css/node.css" rel="stylesheet" type="text/css" />
+</head>
+<body bgcolor="#FFFFCE">
+<table border="1" bordercolor="black" cellspacing="0px">
+<tr align="middle">
+<td width="28"><font color="black"><b>编号</b></font></td>
+<td width="40"><font color="black"><b>时间</b></font></td>
+<td width="143"><font color="black"><b>告警名称</b></font></td>
+<td width="40"><font color="black"><b>IP</b></font></td>
+<td width="68"><font color="black"><b>告警类型</b></font></td>
+<td width="28"><font color="black"><b>级别</b></font></td>
+<td width="320"><font color="black"><b>告警信息</b></font></td>
+<td width="28"><font color="black"><b>编号</b></font></td>
+<td width="40"><font color="black"><b>时间</b></font></td>
+<td width="143"><font color="black"><b>告警名称</b></font></td>
+<td width="40"><font color="black"><b>IP</b></font></td>
+<td width="68"><font color="black"><b>告警类型</b></font></td>
+<td width="28"><font color="black"><b>级别</b></font></td>
+<td width="320"><font color="black"><b>告警信息</b></font></td>
+</tr>
+{% for i in alert %}
+<tr align="middle">
+{{ i[0]['no']|safe }}
+{{ i[0]['time']|safe }}
+{{ i[0]['name']|safe }}
+{{ i[0]['ip']|safe }}
+{{ i[0]['type']|safe }}
+{{ i[0]['alert_level']|safe }}
+{{ i[0]['alert_desc']|safe }}
+{{ i[1]['no']|safe }}
+{{ i[1]['time']|safe }}
+{{ i[1]['name']|safe }}
+{{ i[1]['ip']|safe }}
+{{ i[1]['type']|safe }}
+{{ i[1]['alert_level']|safe }}
+{{ i[1]['alert_desc']|safe }}
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

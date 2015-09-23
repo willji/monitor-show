@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content1 %}
+<link href="./static/css/node.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block content2 %}
+<table border="1" bordercolor="black" cellspacing="0px">
+<tr align="middle">
+<td width="70"><font size="2" color="black"><b>aps</b></font></td>
+<td width="50"><font color="black"><b>time</b></font></td>
+<td width="50"><font color="black"><b>sla</b></font></td>
+</tr>
+{% for i in data %}
+<tr align="middle">
+<td bgcolor="#acacac">{{i['ip']}}</td>
+<td bgcolor="#acacac">{{i['time']}}</td>
+{% if i['alert_level'] == 'critical' %}
+<td bgcolor="#f88888">{{i['sla']}}</td>
+{% elif i['alert_level'] == 'warning' %}
+<td bgcolor="#ffff00">{{i['sla']}}</td>
+{% else %}
+<td bgcolor="#88d066">{{i['sla']}}</td>
+{% endif %}
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

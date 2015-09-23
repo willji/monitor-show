@@ -1,0 +1,200 @@
+<html>
+<head>
+<title>全景监控</title>
+<meta http-equiv="charset" content="utf-8" />
+<!--meta http-equiv="refresh" content="60"-->
+<script type="text/javascript" src="./static/js/jquery-1.5.1.min.js"></script> 
+<link href="./static/css/if-monitor-mainMenu.css" rel="stylesheet" type="text/css"/> 
+<link href="./static/css/base.css" rel="stylesheet" type="text/css"/>
+{% block content1 %}{% endblock %}
+</head>
+<body bgcolor="#FFFFCE">
+<script type="text/javascript">
+function Class(oParent, sClass){
+    var aElem = oParent.getElementsByTagName('*');
+    var aClass = [];
+    var i = 0;
+    for(i=0;i<aElem.length;i++)if(aElem[i].className == sClass)aClass.push(aElem[i]);
+    return aClass;
+};
+function css(obj, attr, value){
+    if(arguments.length == 2){
+        var style = obj.style,
+        currentStyle = obj.currentStyle;
+        if(typeof attr === 'string')return currentStyle ? currentStyle[attr] : getComputedStyle(obj, false)[attr];
+        for(var propName in attr) 
+        { 
+           if (propName == 'opacity')
+           {
+                style.filter = "alpha(opacity=" + attr[propName] + ")";
+                style.opacity = attr[propName] / 100;
+           } else {
+                style[propName] = attr[propName];
+           }
+        }
+    }else if(arguments.length == 3){
+        switch(attr){
+            case "width":
+            case "height":
+            case "paddingTop":
+            case "paddingRight":
+            case "paddingBottom":
+            case "paddingLeft":
+            case "top":
+            case "right":
+            case "bottom":
+            case "left":
+            case "marginTop":
+            case "marginRigth":
+            case "marginBottom":
+            case "marginLeft":
+                obj.style[attr] = value + "px";
+                break;
+            case "opacity":
+                obj.style.filter = "alpha(opacity=" + value + ")";
+                obj.style.opacity = value / 100;
+                break;
+            default:
+                obj.style[attr] = value
+        }
+    }
+};
+function extend(destination, source){
+    for (var propName in source) destination[propName] = source[propName];
+    return destination
+};
+function doMove(obj, json, fnEnd){
+    clearInterval(obj.timer);
+    obj.iSpeed = 0;
+    fnEnd = extend({
+        type: "buffer",
+        callback: function() {}
+    }, fnEnd);
+    obj.timer = setInterval(function(){
+        var iCur = 0,
+            iStop = true;
+        for(var propName in json){
+            iCur = parseFloat(css(obj, propName));
+            propName == 'opacity' && (iCur = Math.round(iCur * 100));
+            switch(fnEnd.type){
+                case 'buffer':
+                    obj.iSpeed = (json[propName] - iCur) / 3;
+                    obj.iSpeed = obj.iSpeed > 0 ? Math.ceil(obj.iSpeed) : Math.floor(obj.iSpeed);
+                    //json[propName] == iCur || (iStop = false, css(obj, propName, iCur + obj.iSpeed));
+                    if (json[propName] != iCur) 
+                    {
+                        iStop = false;
+                        css(obj, propName, iCur + obj.iSpeed);
+                    }
+                    break;
+                case 'elasticity':
+                    obj.iSpeed += (json[propName] - iCur) / 3;
+                    obj.iSpeed *= 0.75;
+                    //Math.abs(json[propName] - iCur) <= 1 &&  Math.abs(obj.iSpeed) <= 1 ? css(obj, propName, json[propName]) : css(obj, propName, json[propName]) || (iStop = false, css(obj, propName, iCur + obj.iSpeed));
+                    if (Math.abs(json[propName] - iCur) <= 1) 
+                        {
+                        Math.abs(obj.iSpeed) <= 1 ? css(obj, propName, json[propName]) : css(obj, propName, json[propName]);
+                        }
+                    else 
+                        {
+                        iStop = false;
+                        css(obj, propName, iCur + obj.iSpeed);
+                        }
+                    break;
+                case 'accelerate':
+                    obj.iSpeed = obj.iSpeed + 3;
+                    //iCur >= json[propName] ? css(obj, propName, json[propName]) : css(obj, propName, json[propName]) || (iStop = false, css(obj, propName, iCur + obj.iSpeed));
+                    if (iCur >= json[propName])
+                        {
+                        css(obj, propName, json[propName]);
+                        }
+                    else
+                        {
+                        css(obj, propName, json[propName]);
+                        iStop = false; 
+                        css(obj, propName, iCur + obj.iSpeed);
+                        }
+                break;
+            }
+        }
+        if(iStop){
+            clearInterval(obj.timer);
+            obj.timer = null;
+            obj.iSpeed = 0;
+            fnEnd.callback();   
+        }
+    },30);
+};
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var aMenu = Class(document, 'menu');
+    var aList = Class(document, 'list');
+    var i = iNow = zIndex = 0;
+    for(i=0;i<aMenu.length;i++){
+        aMenu[i].index = i;
+        aMenu[i].onclick = function(e){
+            var oEvent = e || event;
+            var aDiv = this.parentNode.getElementsByTagName('div');
+            var aMenuList = Class(this.parentNode,'menuList');
+            var iWidth = aMenuList.length * aMenuList[0].offsetWidth + 3;
+            flexible();
+            if(aDiv[0].style.height==aDiv[1].offsetHeight+'px'){
+                flexible();
+            }else{
+                this.parentNode.className = 'msMnu_hove';
+                aDiv[0].style.zIndex = zIndex++;
+                if(aMenuList.length>1)aDiv[0].style.width = iWidth + 'px';
+                doMove(aDiv[0], {height:aDiv[1].offsetHeight});
+            }
+            iNow = this.index;
+            oEvent.cancelBubble = true;
+        };
+    }
+    document.onclick = function(){flexible();};
+    function flexible(){
+        aList[iNow].parentNode.className = 'msMnu_Item';
+        aList[iNow].style.zIndex = 0;
+        doMove(aList[iNow], {height:0});
+    }
+    
+});
+</script>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="8%"><img src="./static/images/logo.jpg" width="96" height="64" /></td>
+<td width="33%"><img src="./static/images/logo_text.jpg" width="248" height="28" /></td>
+<td width="5%">
+<div class="nav">
+<ul>
+<li class="msMnu_Item">
+<a href="./index.html">总览</a>
+</li>
+<li class="msMnu_Item">
+<a href="javascript:;" class="menu">产品</a>
+<div class="list">
+<div>
+<ul class="menuList">
+<li>
+<ul>
+<li class="lis"><a href="./index.html">CPS</a></li>
+<li class="lis"><a href="./index.html">FI</a></li>
+</div>
+</li>
+</ul>
+</div>
+</td>
+<td width="25%" align="center" class="blacktitle">全景监控系统</td>
+</tr>
+</table>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="10px" background="./static/images/nav_all.jpg"><img width="3" height="10" /></td>
+</tr>
+</table>
+{% block content2 %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,40 @@
+<link href="../static/css/node.css" rel="stylesheet" type="text/css" />
+<body bgcolor="#FFFFCE">
+<table border="1" bordercolor="black" cellspacing="0px">
+<tr align="middle">
+<td width="220"><font size="2" color="black"><b>QueueName</b></font></td>
+<td width="40"><font size="2" color="black"><b>Rcvrs</b></font></td>
+<td width="40"><font size="2" color="black"><b>Msgs</b></font></td>
+<td width="40"><font size="2" color="black"><b>Size</b></font></td>
+</tr>
+<tr align="middle">
+<td bgcolor="#acacac">{{queue[0]['time']}}</td>
+<td bgcolor="#88d066">--</td>
+<td bgcolor="#88d066">--</td>
+<td bgcolor="#88d066">--</td>
+</tr>
+{% if queue %}
+{% for i in queue %}
+<tr align="middle">
+{% if i['alert_level'] == 'critical' %}
+<td bgcolor="#acacac">{{i['name']}}</td>
+<td bgcolor="#f88888">{{i['rcvrs']}}</td>
+<td bgcolor="#f88888">{{i['msge']}}</td>
+<td bgcolor="#f88888">{{i['size']}}</td>
+{% elif i['alert_level'] == 'warning' %}
+<td bgcolor="#acacac">{{i['name']}}</td>
+<td bgcolor="#ffff00">{{i['rcvrs']}}</td>
+<td bgcolor="#ffff00">{{i['msge']}}</td>
+<td bgcolor="#ffff00">{{i['size']}}</td>
+{% else %}
+<td bgcolor="#acacac">{{i['name']}}</td>
+<td bgcolor="#88d066">{{i['rcvrs']}}</td>
+<td bgcolor="#88d066">{{i['msge']}}</td>
+<td bgcolor="#88d066">{{i['size']}}</td>
+</tr>
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+</table>
+<body>
