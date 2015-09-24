@@ -1,6 +1,4 @@
-main    主程序模块
-
-
+main:    主程序目录
 
         flask_web.py   路由模块
         log.py         日志处理模块
@@ -10,10 +8,10 @@ main    主程序模块
         mylog.py       日志模块
         mycrypt.py     加解密模块
 
-scripts 抓取数据脚本 
+scripts: 抓取数据脚本目录 
 
-datas   数据目录
+datas:   数据目录
 
-config  配置文件  
+config:  配置文件目录  
 
-logs    异常日志
+logs:    日志目录
