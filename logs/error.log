@@ -110,3 +110,71 @@ Traceback (most recent call last):
   File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1566, in make_response
     raise ValueError('View function did not return a response')
 ValueError: View function did not return a response
+
+
+24/09/2015 11:09:08 app.py [line:1423] ERROR Exception on /haha [GET]
+Traceback (most recent call last):
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1478, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/wrappers.py", line 841, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/wrappers.py", line 57, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/test.py", line 867, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'list' object is not callable
+
+
+24/09/2015 11:09:55 app.py [line:1423] ERROR Exception on /haha [GET]
+Traceback (most recent call last):
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1478, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/wrappers.py", line 841, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/test.py", line 867, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'list' object is not callable
+
+
+24/09/2015 11:09:59 app.py [line:1423] ERROR Exception on /haha [GET]
+Traceback (most recent call last):
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1478, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/wrappers.py", line 841, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/wrappers.py", line 57, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/werkzeug/test.py", line 867, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+
+24/09/2015 13:47:24 app.py [line:1423] ERROR Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/python3.4.3/lib/python3.4/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/apache/htdocs/monitor-show/main/flask_web.py", line 361, in hello
+    return '%s' % (getSlaData('mas'))
+NameError: name 'getSlaData' is not defined

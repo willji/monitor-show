@@ -3,7 +3,7 @@
 import time
 import os
 from flask import Flask, render_template
-from data import getNodeData, getBgwData, getQueueData, getSumData
+from data import getNodeData, getBgwData, getQueueData, getSumData, getSlaData
 from pic import getNodePic, getSlaPic, getEntryPic, getBgwPic, getBankPic
 from alert import text2html
 from mylog import mylog
@@ -340,6 +340,10 @@ def sla_mas():
 def dbinfo_nv():
     return render_template('dbinfo_nv.html')
 
+@app.route('/dbinfo_new.html', methods=['GET'])
+def dbinfo_new():
+    return render_template('dbinfo_new.html')
+
 @app.route('/time.htm', methods=['GET'])
 def getTime():
     return render_template('time.htm', time=time.strftime("%d %H:%M:%S", time.localtime()))
@@ -354,7 +358,7 @@ def monitor():
 
 @app.route('/', methods=['GET'])
 def hello():
-    return "hello world"
+    return 'hello world'
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8888, debug=True)

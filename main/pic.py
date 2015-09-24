@@ -1,6 +1,6 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from data import *
+from data import getNodeData, getQueueData, getBgwData, getSlaData, getYWData
 
 def getNodePic(node):
     '''根据报警情况返回对应图片'''

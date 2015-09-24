@@ -1,4 +1,4 @@
-17:23:46 - - - 
+10:50:46 - - - 
 bgw..ResponseQueue                    0        1 0.0Kb   
 cis.bin.RequestQueue                200        0 0.0Kb   
 cis..RequestQueue                   200        0 0.0Kb   
@@ -7,7 +7,7 @@ cis.organization.RequestQueue        40        0 0.0Kb
 cis.security.RequestQueue           120        0 0.0Kb   
 cis.terminal_login.RequestQueue       80        0 0.0Kb   
 internal..RequestQueue              280       1 0.0Kb   
-mas..BinRequestQueue                100        1 0.0Kb   
+mas..BinRequestQueue                100        11 0.0Kb   
 mas..MerchantRequestQueue           200        0 0.0Kb   
 mas..RequestQueue                   500        1 0.0Kb   
 mas..TxnRequestQueue                300        1 3.9Kb   

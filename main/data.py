@@ -1,14 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import re
 import datetime
-import sys
-sys.path.append('/usr/lib/python2.6/site-packages/MySQL_python-1.2.5-py2.6.egg')
+from log import getNodeLog, getBgwLog, getSlaLog, getQueueLog, getYWLog
+from mycrypt import prpcrypt
 import pymysql as mysql
 mysql.install_as_MySQLdb()
-from log import *
-from mycrypt import prpcrypt
-from binascii import b2a_hex, a2b_hex
 
 #锁定主目录
 DIR = '/usr/local/apache/htdocs/monitor-show/'

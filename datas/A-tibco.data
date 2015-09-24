@@ -1,4 +1,4 @@
-17:23:46 - - - 
+10:50:46 - - - 
 bgw..ResponseQueue                    0        0 0.0Kb   
 cis.bin.RequestQueue                200        0 0.0Kb   
 cis..RequestQueue                   200        0 0.0Kb   
@@ -12,5 +12,5 @@ mas..MerchantRequestQueue           200        0 0.0Kb
 mas..RequestQueue                   500        0 0.0Kb   
 mas..TxnRequestQueue                300        1 3.9Kb   
 tais..DataRequestQueue              100        2 3.4Kb   
-tais..RequestQueue                  300        2 8.1Kb   
+tais..RequestQueue                  300        1 8.1Kb   
 DivMsgs 0 - - 

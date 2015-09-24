@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-from data import *
+from data import getNodeData, getBgwData, getSlaData, getQueueData, getYWData
 
 #告警列表
 alert = []   
@@ -203,4 +203,6 @@ def text2html():
     return alert
 
 if __name__ == '__main__':
-    print(getAlert())
+    for i in text2html():
+        print(i)
+        print()
